@@ -76,7 +76,7 @@ jobs:
 
   deploy-packages:
 
-    needs: [build-windows-wheels, build-mac10-wheels, build-linux-wheels, build-linux-aarch64-wheels]
+    needs: [build-linux-aarch64-wheels]
     runs-on: windows-2019
 
     steps:
@@ -100,9 +100,6 @@ jobs:
       shell: cmd
       if: ${{contains(github.event.inputs.deploy, 'true') && github.ref == 'refs/heads/master'}}
       run: |
-        python -m twine upload windowsbuild*/* -u __token__ -p ${{ secrets.PYPI_PASSWORD }} --skip-existing
-        python -m twine upload apple10build*/* -u __token__ -p ${{ secrets.PYPI_PASSWORD }} --skip-existing
-        python -m twine upload linuxbuild*/* -u __token__ -p ${{ secrets.PYPI_PASSWORD }} --skip-existing
         python -m twine upload linuxaarch64build*/* -u __token__ -p ${{ secrets.PYPI_PASSWORD }} --skip-existing
 
     - name: Test PyPi Deployment
@@ -110,7 +107,4 @@ jobs:
       if: "contains(github.event.inputs.deploytest, 'true')"
       run: |
         dir
-        python -m twine upload --repository testpypi windowsbuild*/* -u __token__ -p ${{ secrets.TEST_PYPI_PASSWORD }} --skip-existing
-        python -m twine upload --repository testpypi apple10build*/* -u __token__ -p ${{ secrets.TEST_PYPI_PASSWORD }} --skip-existing
-        python -m twine upload --repository testpypi linuxbuild*/* -u __token__ -p ${{ secrets.TEST_PYPI_PASSWORD }} --skip-existing
         python -m twine upload --repository testpypi linuxaarch64build*/* -u __token__ -p ${{ secrets.TEST_PYPI_PASSWORD }} --skip-existing
