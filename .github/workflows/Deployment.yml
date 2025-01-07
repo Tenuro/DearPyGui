@@ -53,8 +53,8 @@ jobs:
         git submodule update --init --recursive ./Dependencies/imgui && \
         git submodule update --init --recursive ./Dependencies/freetype && \
         git submodule update --init --recursive ./Dependencies/glfw && \
-        yum update -y && \
-        yum install mesa-libGLU-devel mesa-libGL-devel xorg-x11-server-devel libXrandr-devel freetype-devel harfbuzz gcc python3-devel libffi-devel wget curl libXinerama-devel libXcursor-devel libXi-devel -y && \
+        apt-get update -y && \
+        apt-get install mesa-libGLU-devel mesa-libGL-devel xorg-x11-server-devel libXrandr-devel freetype-devel harfbuzz gcc python3-devel libffi-devel wget curl libXinerama-devel libXcursor-devel libXi-devel -y && \
         echo "Mark Versions" && \
         echo ${{ github.event.inputs.version }} > version_number.txt && \
         echo "Build Wheel" && \
