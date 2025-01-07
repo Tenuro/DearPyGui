@@ -32,7 +32,7 @@ on:
 jobs:
 
   build-linux-aarch64-wheels:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     env:
       img: quay.io/pypa/manylinux2014_aarch64
     strategy:
