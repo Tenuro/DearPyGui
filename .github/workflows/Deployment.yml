@@ -48,6 +48,7 @@ jobs:
       run: |
         docker run --rm -v ${{ github.workspace }}:/ws:rw --workdir=/ws \
         ${{ env.img }} \
+        git config --global --add safe.directory /ws
         bash -exc 'echo "Retrieve submodules/Dependencies" && \
         git submodule update --init --recursive ./Dependencies/imgui && \
         git submodule update --init --recursive ./Dependencies/freetype && \
