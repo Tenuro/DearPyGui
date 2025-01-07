@@ -68,7 +68,7 @@ jobs:
         pip3 install cryptography twine wheel setuptools && \
         python3 -m setup bdist_wheel --plat-name manylinux2014_aarch64 --dist-dir dist'
     - name: Upload Linux Arch64 ${{ matrix.python-version }} Wheel
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: linuxaarch64build${{ matrix.python-version }}
         path: ${{ github.workspace }}/dist/*.whl
